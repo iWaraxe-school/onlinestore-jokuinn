@@ -16,7 +16,7 @@ public class StoreApp {
 
         List<Category> categories = populator.getCategories();
         Store store = new Store();
-        store.categories.addAll(categories);
+        store.setCategories(categories);
 
         for (Category category: categories) {
             List<Product> products = populator.getProductsForCategory(CategoriesENUM.valueOf(category.getName()));
