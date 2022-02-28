@@ -1,4 +1,4 @@
-package com.reut.store;
+package com.reut.store.populator;
 
 import com.reut.domain.Category;
 import com.reut.domain.Product;

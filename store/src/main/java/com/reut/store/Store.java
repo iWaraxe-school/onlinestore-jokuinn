@@ -20,10 +20,21 @@ public class Store {
         }
     }
 
-    public void showProductsList() {
-        for (Product product: productList) {
+    public void showProductsList(List<Product> products) {
+        for (Product product: products) {
             System.out.println(product.toString());
         }
+    }
+
+    public List<Product> getListOfAllProducts() {
+
+        List<Product> allProducts = new ArrayList<>();
+
+        for (Category category : this.categories) {
+            allProducts.addAll(category.getProductList());
+        }
+
+        return allProducts;
     }
 
 }
