@@ -14,10 +14,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class StoreHelper {
+public class Helper {
     Store store;
 
-    public StoreHelper(Store store) {
+    public Helper(Store store) {
         this.store = store;
     }
 

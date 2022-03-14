@@ -1,30 +1,29 @@
 package com.reut.consoleApp;
 
 
-import com.reut.store.StoreHelper;
+import com.reut.store.Helper;
 import com.reut.store.populator.Populator;
 import com.reut.store.populator.RandomStorePopulator;
 import com.reut.store.Store;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class StoreApp {
     public static void main(String[] args) throws Exception {
 
         Store store = new Store();
-        StoreHelper helper = new StoreHelper(store);
+        Helper helper = new Helper(store);
         Populator populator = new RandomStorePopulator();
 
         helper.addProductsAndCategoriesToStore(populator);
         store.showAllProductsAndCategories();
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        Scanner scanner = new Scanner(System.in);
 
         boolean flag = true;
         while (flag) {
             System.out.println("Enter command sort/top5/quit: ");
-            String command = reader.readLine();
+            String command = scanner.nextLine();
             System.out.println("Your command is : " + command);
             switch (command) {
                 case "sort":
