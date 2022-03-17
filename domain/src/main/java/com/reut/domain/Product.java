@@ -4,7 +4,6 @@ import lombok.*;
 
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class Product {
@@ -13,4 +12,10 @@ public class Product {
     private double rate;
 
     private double price;
+
+    @Override
+    public String toString() {
+
+        return String.format("Name: '%s', Price: %.2f, Rate: %.1f", name, price, rate);
+    }
 }

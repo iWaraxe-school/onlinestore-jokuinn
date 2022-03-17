@@ -1,4 +1,4 @@
-package com.reut.store;
+package com.reut.store.populator;
 
 import com.github.javafaker.Faker;
 import com.reut.domain.Category;
@@ -56,12 +56,12 @@ public class RandomStorePopulator implements Populator {
 
     private String generateRandomProductName(CategoriesENUM category) {
         switch (category) {
-            case BIKE:
-                return faker.name().name();
-            case MILK:
+            case FOOD:
                 return faker.food().ingredient();
-            case PHONE:
-                return faker.phoneNumber().cellPhone();
+            case BEER:
+                return faker.beer().name();
+            case BOOK:
+                return faker.book().title();
             default:
                 return null;
         }
