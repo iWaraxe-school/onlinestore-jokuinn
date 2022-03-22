@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Helper {
+    private final static String FILE_PATH = "store/src/main/resources/config.xml";
     Store store;
 
     public Helper(Store store) {
@@ -31,31 +32,32 @@ public class Helper {
         }
     }
 
-    public List<Product> sortAllProducts() throws Exception {
+    public List<Product> sortAllProducts(List<Product> products) throws Exception {
         Map<String, String> sort;
         try {
             XmlReader xmlReader = new XmlReader();
-            sort = xmlReader.getAllPropertiesToSort();
+            sort = xmlReader.getAllPropertiesToSort(FILE_PATH);
         }
         catch (ParserConfigurationException e) {
             throw new Exception("Config file exception.");
         }
-        return sortAllProducts(sort);
+        return sortAllProducts(products, sort);
     }
 
-    public List<Product> sortAllProducts(Map<String, String> sort) {
-        List<Product> products = this.store.getListOfAllProducts();
+    public List<Product> sortAllProducts(List<Product> products, Map<String, String> sort) {
         products.sort(new ProductComparator(sort));
-
         return products;
     }
 
-    public List<Product> getTop5Products() {
+    public Map<String, String> setSortCriteriaByPrice() {
         Map<String, String> sort = new HashMap<>();
         sort.put("price", ProductSort.DESC.toString());
 
-        List<Product> productList = sortAllProducts(sort);
+        return sort;
+    }
 
+    public List<Product> getTop5Products(List<Product> products, Map<String, String> sort) {
+        List<Product> productList = sortAllProducts(products, sort);
         return new ArrayList<>(productList.subList(0, 5));
     }
 }

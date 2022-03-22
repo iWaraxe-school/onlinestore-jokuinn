@@ -16,8 +16,7 @@ import java.util.Map;
 
 public class XmlReader {
 
-    public Map<String, String> getAllPropertiesToSort() throws ParserConfigurationException, IOException, SAXException {
-        String filePath = "store\\src\\main\\resources\\config.xml";
+    public Map<String, String> getAllPropertiesToSort(String filePath) throws ParserConfigurationException, IOException, SAXException {
         String tag = "sort";
         Map<String, String> propertiesMap = new LinkedHashMap<>();
 

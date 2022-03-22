@@ -20,7 +20,7 @@ public class ProductComparator implements Comparator<Product> {
         CompareToBuilder compareBuilder = new CompareToBuilder();
 
         for (Map.Entry<String, String> item : sort.entrySet()) {
-            ProductSort sortOrder = (ProductSort.valueOf(sort.get(item.getKey())));
+            ProductSort sortOrder = ProductSort.valueOf(sort.get(item.getKey()));
             try {
                 if (sortOrder == ProductSort.ASC) {
                     compareBuilder.append(this.getPropertyValue(a, item.getKey()), this.getPropertyValue(b, item.getKey()));
@@ -36,7 +36,7 @@ public class ProductComparator implements Comparator<Product> {
         return compareBuilder.toComparison();
     }
 
-    private String getPropertyValue(Product product, String property) throws Exception {
+    public String getPropertyValue(Product product, String property) throws Exception {
 
         try {
             Field field = product.getClass().getDeclaredField(property);

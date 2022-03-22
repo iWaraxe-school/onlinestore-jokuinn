@@ -9,9 +9,10 @@ import lombok.*;
 public class Product {
     private String name;
 
+    private double price;
+
     private double rate;
 
-    private double price;
 
     @Override
     public String toString() {

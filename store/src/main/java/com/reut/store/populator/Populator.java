@@ -11,6 +11,6 @@ public interface Populator {
 
     List<Product> getProductsForCategory(CategoriesENUM category);
 
-    List<Product> generateRandomProduct(CategoriesENUM categories, int count);
+    List<Product> generateRandomProducts(CategoriesENUM categories, int count);
 
 }
