@@ -40,11 +40,11 @@ public class RandomStorePopulator implements Populator {
         Random random = new Random();
         int count = random.nextInt(10);
 
-        return new ArrayList<>(generateRandomProduct(category, count));
+        return new ArrayList<>(generateRandomProducts(category, count));
     }
 
     @Override
-    public List<Product> generateRandomProduct(CategoriesENUM categories, int count) {
+    public List<Product> generateRandomProducts(CategoriesENUM categories, int count) {
         List<Product> products = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
@@ -54,7 +54,7 @@ public class RandomStorePopulator implements Populator {
         return products;
     }
 
-    private String generateRandomProductName(CategoriesENUM category) {
+    public String generateRandomProductName(CategoriesENUM category) {
         switch (category) {
             case FOOD:
                 return faker.food().ingredient();
@@ -67,11 +67,11 @@ public class RandomStorePopulator implements Populator {
         }
     }
 
-    private double generateRandomRate() {
+    public double generateRandomRate() {
         return faker.number().randomDouble(1, 0, 5);
     }
 
-    private double generateRandomPrice() {
-        return faker.number().randomDouble(1, 1, 100);
+    public double generateRandomPrice() {
+        return faker.number().randomDouble(1, 10, 100);
     }
 }
