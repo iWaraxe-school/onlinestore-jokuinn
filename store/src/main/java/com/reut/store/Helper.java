@@ -75,7 +75,7 @@ public class Helper {
                 log.info("Starting order thread " + Thread.currentThread().getName());
                 store.getPurchasedProducts().add(orderedProduct);
 
-                log.info("Purchased products is ");
+                log.info("Purchased products are ");
                 store.showProductsList(store.getPurchasedProducts());
 
                 log.info("Time to sleep for " + threadTime);
