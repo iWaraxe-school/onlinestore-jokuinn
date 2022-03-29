@@ -3,10 +3,12 @@ package com.reut.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @NoArgsConstructor
 @Getter
 @Setter
@@ -27,9 +29,9 @@ public class Category {
     }
 
     public void showProducts() {
-        System.out.println("Category: " + name);
+        log.info("Category: " + name);
         for (Product product: productList) {
-            System.out.println(product.toString());
+            log.info(product.toString());
         }
     }
 
