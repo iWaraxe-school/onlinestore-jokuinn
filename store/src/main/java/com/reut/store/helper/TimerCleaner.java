@@ -1,4 +1,6 @@
-package com.reut.store;
+package com.reut.store.helper;
+
+import com.reut.store.Store;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

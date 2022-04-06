@@ -2,6 +2,7 @@ package com.reut.store;
 
 import com.reut.domain.Product;
 import com.reut.store.comparator.XmlReader;
+import com.reut.store.helper.Helper;
 import org.junit.Assert;
 import org.junit.Test;
 import org.xml.sax.SAXException;

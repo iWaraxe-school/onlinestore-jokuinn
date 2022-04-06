@@ -1,8 +1,9 @@
-package com.reut.store;
+package com.reut.store.helper;
 
 import com.reut.domain.Category;
 import com.reut.domain.Product;
 import com.reut.domain.categories.CategoriesENUM;
+import com.reut.store.Store;
 import com.reut.store.comparator.ProductComparator;
 import com.reut.store.comparator.ProductSort;
 import com.reut.store.comparator.XmlReader;
@@ -29,7 +30,7 @@ public class Helper {
         List<Category> categories = populator.getCategories();
         store.setCategories(categories);
 
-        for (Category category: categories) {
+        for (Category category : categories) {
             List<Product> products = populator.getProductsForCategory(CategoriesENUM.valueOf(category.getName()));
             category.addProducts(products);
         }
@@ -40,8 +41,7 @@ public class Helper {
         try {
             XmlReader xmlReader = new XmlReader();
             sort = xmlReader.getAllPropertiesToSort(FILE_PATH);
-        }
-        catch (ParserConfigurationException e) {
+        } catch (ParserConfigurationException e) {
             throw new Exception("Config file exception.");
         }
         return sortAllProducts(products, sort);
@@ -88,6 +88,10 @@ public class Helper {
         });
 
         System.out.println("createOrder() is finished " + Thread.currentThread().getName());
+    }
+
+    public void shutdownThreads() {
+        executorService.shutdown();
     }
 
     public Product getOrderedProduct(String productName, List<Product> products) {
