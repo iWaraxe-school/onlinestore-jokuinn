@@ -16,7 +16,6 @@ import java.util.List;
 public class Store {
     private List<Category> categories = new ArrayList<>();
     private List<Product> productList = new ArrayList<>();
-    @NonNull
     private List<Product> purchasedProducts = new ArrayList<>();
 
     public void showAllProductsAndCategories() {

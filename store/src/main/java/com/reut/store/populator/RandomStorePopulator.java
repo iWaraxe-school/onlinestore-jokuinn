@@ -24,7 +24,7 @@ public class RandomStorePopulator implements Populator {
 
         Set<Class<? extends Category>> subTypes = reflections.getSubTypesOf(Category.class);
 
-        for (Class<? extends Category> category: subTypes) {
+        for (Class<? extends Category> category : subTypes) {
             try {
                 categories.add(category.getConstructor().newInstance());
             } catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException | InstantiationException e) {
@@ -43,7 +43,6 @@ public class RandomStorePopulator implements Populator {
         return new ArrayList<>(generateRandomProducts(category, count));
     }
 
-    @Override
     public List<Product> generateRandomProducts(CategoriesENUM categories, int count) {
         List<Product> products = new ArrayList<>();
 

@@ -1,4 +1,6 @@
 package com.reut.store.populator;
 
-public class PopulatorFactory {
+public enum PopulatorFactory {
+    RandomStorePopulator,
+    DBPopulator
 }
