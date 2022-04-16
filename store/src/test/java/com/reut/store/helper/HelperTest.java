@@ -1,8 +1,12 @@
-package com.reut.store;
+package com.reut.store.helper;
 
+import com.reut.domain.Category;
 import com.reut.domain.Product;
+import com.reut.store.Store;
 import com.reut.store.comparator.XmlReader;
 import com.reut.store.helper.Helper;
+import com.reut.store.populator.Populator;
+import com.reut.store.populator.RandomStorePopulator;
 import org.junit.Assert;
 import org.junit.Test;
 import org.xml.sax.SAXException;
@@ -16,6 +20,7 @@ import java.util.Map;
 public class HelperTest {
     private static final String FILE_PATH = "src/main/resources/config.xml";
     private final Store store = new Store();
+    private final Populator populator = new RandomStorePopulator();
     private final Helper helper = new Helper(store);
     private static final XmlReader xmlReader = new XmlReader();
     private static Map<String, String> sort;
@@ -89,6 +94,32 @@ public class HelperTest {
         Product actual = helper.getOrderedProduct("Sugar", products);
 
         Assert.assertEquals(expected.toString(), actual.toString());
+    }
+
+    @Test
+    public void addProductsAndCategoriesToStore_ShouldAddCategoriesAndProductsToLists() {
+        helper.addProductsAndCategoriesToStore(populator);
+        List<Category> categories = store.getCategories();
+        List<Product> products = store.getListOfAllProducts();
+
+        Assert.assertNotNull(categories);
+        Assert.assertNotNull(products);
+    }
+
+    @Test
+    public void createOrder_ShouldReturnOrderedProduct() {
+        Product product = new Product("Sugar", 12.0, 3.0);
+        List<Product> products = new ArrayList<>();
+        products.add(new Product("Some name", 15.0, 5.0));
+        products.add(new Product("Another name", 10.0, 5.0));
+        products.add(new Product("Name", 90.0, 5.0));
+        products.add(new Product("Sugar", 12.0, 3.0));
+        products.add(new Product("Food", 75.0, 5.0));
+
+        helper.createOrder(product.getName(), products);
+
+        Assert.assertNotNull(store.getPurchasedProducts());
+
     }
 
 }

@@ -13,11 +13,8 @@ public class Product {
 
     private double rate;
 
-
     @Override
     public String toString() {
-
-//        return String.format("Name: '%s', Price: %.2f, Rate: %.1f", name, price, rate);
         return "Name: " + name + ", Price: " + price + ", Rate: " + rate;
     }
 }

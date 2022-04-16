@@ -15,11 +15,16 @@ public class TimerCleaner extends TimerTask {
 
     @Override
     public void run() {
-        store.getPurchasedProducts().clear();
+        cleanPurchasedProducts();
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         System.out.println("Clean up purchased list - " + dtf.format(now));
     }
+
+    public void cleanPurchasedProducts() {
+        store.getPurchasedProducts().clear();
+    }
+
 
 }

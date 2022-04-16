@@ -87,7 +87,7 @@ public class Helper {
             }
         });
 
-        System.out.println("createOrder() is finished " + Thread.currentThread().getName());
+        log.info("createOrder() is finished " + Thread.currentThread().getName());
     }
 
     public void shutdownThreads() {

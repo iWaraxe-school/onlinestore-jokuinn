@@ -1,4 +1,4 @@
-package com.reut.store.util;
+package com.reut.store.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
