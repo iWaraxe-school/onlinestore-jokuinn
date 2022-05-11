@@ -1,4 +1,4 @@
-package com.reut.store.util;
+package com.reut.store.db;
 
 import com.reut.domain.Category;
 import com.reut.domain.Product;

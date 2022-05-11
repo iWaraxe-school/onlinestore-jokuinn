@@ -2,13 +2,10 @@ package com.reut.consoleApp;
 
 import com.reut.domain.Product;
 import com.reut.store.Store;
+import com.reut.store.db.DBService;
 import com.reut.store.helper.Helper;
 import com.reut.store.helper.TimerCleaner;
-import com.reut.store.populator.DBPopulator;
-import com.reut.store.populator.Populator;
-import com.reut.store.populator.PopulatorFactory;
-import com.reut.store.populator.RandomStorePopulator;
-import com.reut.store.util.DBService;
+import com.reut.store.populator.*;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
@@ -23,12 +20,13 @@ public class StoreApp {
     }
 
     public static void init() {
+        Populator populator = null;
         try {
             Store store = new Store();
             Helper helper = new Helper(store);
 
-            Populator populator = null;
-            PopulatorFactory factory = PopulatorFactory.DBPopulator;
+
+            PopulatorFactory factory = PopulatorFactory.HttpPopulator;
 
             switch (factory) {
                 case DBPopulator:
@@ -36,6 +34,9 @@ public class StoreApp {
                     break;
                 case RandomStorePopulator:
                     populator = new RandomStorePopulator();
+                    break;
+                case HttpPopulator:
+                    populator = new HttpPopulator();
                     break;
             }
 
@@ -50,7 +51,7 @@ public class StoreApp {
 
             boolean flag = true;
             while (flag) {
-                log.info("Choose sort/top5/order/quit");
+                log.info("Choose sort/top5/order/addToCart/quit");
                 String command = scanner.nextLine();
                 log.info("Your command is : " + command);
                 switch (command) {
@@ -66,14 +67,23 @@ public class StoreApp {
                         String productName = scanner.nextLine();
                         helper.createOrder(productName, products);
                         break;
+                    case "addToCart":
+                        System.out.println("Enter name of product to add to cart:");
+                        String product = scanner.nextLine();
+
+                        ((HttpPopulator) populator).addToCart(product);
+
+                        log.info("Products in the cart:");
+                        store.showProductsList(((HttpPopulator) populator).getProductsFromCart());
+                        break;
                     case "quit":
                         DBService service = new DBService();
                         service.cleanDB();
+
                         timer.cancel();
                         helper.shutdownThreads();
                         flag = false;
                         break;
-
                 }
             }
         } catch (Exception e) {

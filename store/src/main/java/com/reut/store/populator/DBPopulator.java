@@ -3,8 +3,8 @@ package com.reut.store.populator;
 import com.reut.domain.Category;
 import com.reut.domain.Product;
 import com.reut.domain.categories.CategoriesENUM;
-import com.reut.store.util.DBManager;
-import com.reut.store.util.DBService;
+import com.reut.store.db.DBManager;
+import com.reut.store.db.DBService;
 
 import java.sql.SQLException;
 import java.util.List;
